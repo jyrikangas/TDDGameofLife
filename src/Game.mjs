@@ -68,7 +68,7 @@ export class Game {
           }
         }
         if (this.board[i][j]) {
-          if (neighbours>1 && neighbours<5) {
+          if (neighbours>2 && neighbours<5) {
             newBoard[i][j]=true;
           }
         } else {

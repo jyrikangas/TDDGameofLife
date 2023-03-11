@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Game } from "../src/example.mjs";
+import { Game } from "../src/Game.mjs";
 
 describe("Game", () => {
   it("can be created", () => {
@@ -32,10 +32,10 @@ describe("after a tick of the game ", () => {
     expect(game.board).to.deep.equal([[false, false, false], [false, false, false], [false, false, false]]);
   });
 
-  it("a board with 2 living cells next to each other still has 2 living cells", () => {
+  it("a board with 2 living cells next to each other has no living cells", () => {
     let game = new Game(3, 3, "$b2o$!")
     game.tick();
-    expect(game.board).to.deep.equal([[false, false, false], [false, true, true], [false, false, false]]);
+    expect(game.board).to.deep.equal([[false, false, false], [false, false, false], [false, false, false]]);
   });
 
   it("a board with 3 living cells neighboring a dead cell has a fourth live cell be born", () => {
@@ -49,5 +49,4 @@ describe("after a tick of the game ", () => {
     game.tick();
     expect(game.board).to.deep.equal([[true, false, true], [true, false, true], [false, false, false]]);
   });
-
 });
