@@ -7,27 +7,21 @@ export class Game {
   constructor(width, height, state) {
     this.width = width;
     this.height = height;
-    this.board = new Array(height)
-    for(let i = 0; i < height; i++) {
-      this.board[i] = new Array(width).fill(false);
-    }
     this.state = state || ""
     this.parse();
   }
 
+
+
   parse() {
+    this.board = this.initializeBoard();
     let pointer = 0;
-    let lineEnd= false;
     let number = 0;
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
-        if (this.state[pointer] === "!") {
-          return;
-        }
         if (this.state[pointer] === "$") {
           break;
         }
-
         if (number > 0) {
           this.board[i][j] = this.state[pointer] === "o";
           number--;
@@ -44,18 +38,21 @@ export class Game {
           number--;
         }
       }
-      lineEnd = false;
       pointer++;
-
     }
   }
 
-  tick() {
-    let newBoard = new Array(this.height)
-    let neighbours = 0;
+  initializeBoard() {
+    var board = new Array(this.height)
     for(let i = 0; i < this.height; i++) {
-      newBoard[i] = new Array(this.width).fill(false);
+      board[i] = new Array(this.width).fill(false);
     }
+    return board;
+  }
+
+  tick() {
+    let newBoard = this.initializeBoard();
+    let neighbours = 0;
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
         let lastRow = i-1>0?i-1:0;
@@ -70,12 +67,10 @@ export class Game {
             }
           }
         }
-
         if (this.board[i][j]) {
           if (neighbours>1 && neighbours<5) {
             newBoard[i][j]=true;
           }
-
         } else {
           if (neighbours===3) {
             newBoard[i][j]=true;
@@ -86,6 +81,7 @@ export class Game {
     }
     this.board=newBoard;
   }
+
   toString() {
     return this.state
   }

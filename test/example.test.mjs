@@ -21,7 +21,7 @@ describe("Game", () => {
 
 describe("after a tick of the game ", () => {
   it("A dead board remains dead", () => {
-    let game = new Game(3, 3, "!")
+    let game = new Game(3, 3, "$$!")
     game.tick();
     expect(game.board).to.deep.equal([[false, false, false], [false, false, false], [false, false, false]]);
   });
