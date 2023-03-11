@@ -82,6 +82,40 @@ export class Game {
     this.board=newBoard;
   }
 
+
+  parseGameState() {
+    let state = "";
+    let number = 0;
+    let currentCells = false;
+    for (let i = 0; i < this.height; i++) {
+      for (let j = 0; j < this.width; j++) {
+        console.log(state, number, currentCells,i,j, this.board[i][j]);
+
+        if (this.board[i][j] !== currentCells) {
+          console.log("a", number.toString() + currentCells?"o":"b" );
+          let numberString = ""+number
+          if (number>1){
+            state += numberString
+          }
+          state +=currentCells?"o":"b";
+          currentCells = this.board[i][j];
+          number = 0;
+        }
+        number++;
+      }
+      if (currentCells) {
+        if (number>1) {
+          state += number.toString() + "o";
+        }else {
+          state += "o";
+        }
+      }
+      number=0;
+      currentCells = false;
+      i+1==this.height?state +="!":state += "$";
+    }
+    return state;
+  }
   toString() {
     return this.state
   }

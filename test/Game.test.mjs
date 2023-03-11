@@ -17,6 +17,13 @@ describe("Game", () => {
     expect(game.board).to.deep.equal([[false, true, false], [false, false, true], [true, true, true]]);
   });
   
+  it("can parse the board state into a string", () => {
+    let game = new Game(3, 3, "bo$2bo$3o!")
+    game.tick();
+    game.tick();
+    console.log(game.board);
+    expect(game.parseGameState()).to.equal("$2bo$b2o!");
+  });
 });
 
 describe("after a tick of the game ", () => {
@@ -50,3 +57,4 @@ describe("after a tick of the game ", () => {
     expect(game.board).to.deep.equal([[true, false, true], [true, false, true], [false, false, false]]);
   });
 });
+

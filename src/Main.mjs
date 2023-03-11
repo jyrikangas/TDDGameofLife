@@ -12,4 +12,9 @@ export class Main {
         this.game = new Game(fileContent.height, fileContent.width, fileContent.state);
     }
 
+    writeToFile(fileName) {
+        this.fileIO.writeRLEFile(fileName, this.game.height, this.game.width, this.game.state);
+    }
+    
+    
 }
