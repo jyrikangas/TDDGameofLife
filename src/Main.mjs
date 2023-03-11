@@ -8,8 +8,8 @@ export class Main {
     }
 
     loadGame(fileName) {
-        let state = this.fileIO.readRLEFile(fileName);
-        this.game = new Game(5, 5, state);
+        let fileContent = this.fileIO.readRLEFile(fileName);
+        this.game = new Game(fileContent.height, fileContent.width, fileContent.state);
     }
 
 }

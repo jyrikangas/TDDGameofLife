@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs"
+import { readFileSync, writeFileSync } from "node:fs"
 export class FileIO {
 
     readRLEFile(fileName) {
@@ -7,10 +7,8 @@ export class FileIO {
             if (err) {
                 throw err;
             }
-            console.log(data.toString());
             return data.toString();
         });
-        console.log(res.toString().split("\n"));
 
         let fileContent = {}
         res.toString().split("\n")
@@ -28,5 +26,25 @@ export class FileIO {
             }
         }
         return fileContent;
+    }
+
+    writeRLEFile(fileName, height, width, state) {
+        if (state.length > 70) {
+            var states = [];
+            let i = 0;
+            while (true) {
+                states.push(state.slice(i, i+70));
+                if (state.substring(i+70).length < 70) {
+                    states.push(state.slice(i+70));
+                    break;
+                }else {
+                    i += 70;
+                }
+            }
+        }
+        if (states) {
+            state = states.join("\n");
+        }
+        writeFileSync(fileName, "x = " + width + ", y = " + height + "\n" + state);
     }
 }
