@@ -24,37 +24,45 @@ describe("Game", () => {
     console.log(game.board);
     expect(game.parseGameState()).to.equal("$2bo$b2o!");
   });
+  
+  it("should initialize with a board with extra room", () => {
+    let game = new Game(3, 3, "bo$2bo$3o!")
+    expect(game.board.length).to.equal(5);
+    expect(game.board[0].length).to.equal(5);
+  });
 });
 
 describe("after a tick of the game ", () => {
   it("A dead board remains dead", () => {
     let game = new Game(3, 3, "$$!")
     game.tick();
-    expect(game.board).to.deep.equal([[false, false, false], [false, false, false], [false, false, false]]);
+    expect(game.parseGameState()).to.equal("$$!");
   });
 
   it("a board with 1 living cell has become a dead board", () => {
     let game = new Game(3, 3, "$bo$!")
     game.tick();
-    expect(game.board).to.deep.equal([[false, false, false], [false, false, false], [false, false, false]]);
+    expect(game.parseGameState()).to.equal("$$!");
   });
 
   it("a board with 2 living cells next to each other has no living cells", () => {
     let game = new Game(3, 3, "$b2o$!")
     game.tick();
-    expect(game.board).to.deep.equal([[false, false, false], [false, false, false], [false, false, false]]);
+    expect(game.parseGameState()).to.equal("$$!");
   });
 
   it("a board with 3 living cells neighboring a dead cell has a fourth live cell be born", () => {
     let game = new Game(3, 3, "2bo$b2o$!")
     game.tick();
-    expect(game.board).to.deep.equal([[false, true, true], [false, true, true], [false, false, false]]);
+    expect(game.parseGameState()).to.equal("b2o$b2o$!");
   });
 
   it("a live cell with more than 3 live neighbours dies", () => {
     let game = new Game(3, 3, "3o$2o$!")
     game.tick();
-    expect(game.board).to.deep.equal([[true, false, true], [true, false, true], [false, false, false]]);
+    expect(game.parseGameState()).to.equal("obo$obo$!");
   });
+
+
 });
 

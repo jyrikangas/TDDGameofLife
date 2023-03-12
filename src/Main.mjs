@@ -6,6 +6,11 @@ export class Main {
         this.fileIO = new FileIO();
         this.game = null;
     }
+    play(fileName, iterations) {
+        this.loadGame(fileName);
+        this.tick(iterations);
+        this.writeToFile(fileName.slice(0, fileName.length-4) + "_out.rle");
+    }
 
     loadGame(fileName) {
         let fileContent = this.fileIO.readRLEFile(fileName);
@@ -13,8 +18,12 @@ export class Main {
     }
 
     writeToFile(fileName) {
-        this.fileIO.writeRLEFile(fileName, this.game.height, this.game.width, this.game.state);
+        this.fileIO.writeRLEFile(fileName, this.game.height, this.game.width, this.game.parseGameState());
     }
     
-    
+    tick(iterations) {
+        for (let i = 0; i < iterations; i++) {
+            this.game.tick();
+        }
+    }
 }

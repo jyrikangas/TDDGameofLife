@@ -1,11 +1,13 @@
 {
-  "name": "tdd-mooc-new-js-project",
+  "name": "GameOfLifeCLI",
   "version": "1.0.0-SNAPSHOT",
   "description": "TODO",
+  "main": "play.mjs",
   "license": "TODO",
   "private": true,
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "yargs": "^17.7.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",

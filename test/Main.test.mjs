@@ -15,17 +15,24 @@ describe('The app', () => {
         main.loadGame("glider.rle");
         main.writeToFile("maintest.rle");
         main.loadGame("maintest.rle");
-        expect(main.game.toString()).to.equal("bob$2bo$3o!");
+        expect(main.game.toString()).to.equal("bo$2bo$3o!");
         unlinkSync("maintest.rle");
     });
 
-    xit("should be able to read a file, simulate the specified number of iterations, and write the result to a file", () => {
+    it("should be able to read a file, simulate the specified number of iterations, and write the result to a file", () => {
         let main = new Main();
         main.loadGame("glider.rle");
-        main.game.tick(5);
+        main.tick(5);
         main.writeToFile("maintest.rle");
-        console.log(main.game.toString());
-        expect(main.game.toString()).to.equal("$$!");
+        expect(main.game.parseGameState()).to.equal("$b2o$b2o!");
         unlinkSync("maintest.rle");
+    })
+
+    it("should output a new file when called with a .rle file and number of iterations", () => {
+        let main = new Main();
+        main.play("playtest.rle", 5);
+        main.loadGame("playtest_out.rle")
+        expect(main.game.state).to.equal("$b2o$b2o!");
+        unlinkSync("playtest_out.rle");
     })
 })

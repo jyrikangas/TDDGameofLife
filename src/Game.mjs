@@ -42,10 +42,17 @@ export class Game {
     }
   }
 
-  initializeBoard() {
+  initializeBoard2() {
     var board = new Array(this.height)
     for(let i = 0; i < this.height; i++) {
       board[i] = new Array(this.width).fill(false);
+    }
+    return board;
+  }
+  initializeBoard() {
+    var board = new Array(this.height+2)
+    for(let i = 0; i < this.height+2; i++) {
+      board[i] = new Array(this.width+2).fill(false);
     }
     return board;
   }
@@ -89,15 +96,15 @@ export class Game {
     let currentCells = false;
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
-        console.log(state, number, currentCells,i,j, this.board[i][j]);
 
         if (this.board[i][j] !== currentCells) {
-          console.log("a", number.toString() + currentCells?"o":"b" );
           let numberString = ""+number
           if (number>1){
             state += numberString
           }
-          state +=currentCells?"o":"b";
+          if (number>=1){
+            state += currentCells?"o":"b";
+          }
           currentCells = this.board[i][j];
           number = 0;
         }
