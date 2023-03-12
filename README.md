@@ -1,23 +1,21 @@
-# New JavaScript Project
+# TDD MOOC Game Of Life exercise
 
-An empty project with JavaScript testing tools preconfigured. Do whatever you like with it.
+A command line application which takes the name of a .rle file and an integer as input, and then runs the specified amount of iterations on the pattern in the .rle file. It outputs the resulting pattern to a new .rle named [name of your file]_out.rle.
 
-## Prerequisites
+Use by first running 
 
-You'll need a recent [Node.js](https://nodejs.org/) version. Then download this project's dependencies with:
+    npm install 
+    
+and then running 
 
-    npm install
+    node . --file filename.rle --iterations 5
+    
+it only simulates in the bounds of the x and y dimensions provided in the .rle file. I was going to refactor it to work with a boundless gameboard, but started to run low on time. 
 
-## Developing
+# Tests
 
-Run tests once
+Run tests with
 
     npm run test
 
-Run tests continuously
 
-    npm run autotest
-
-Code reformat
-
-    npm run format
