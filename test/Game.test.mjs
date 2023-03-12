@@ -25,11 +25,6 @@ describe("Game", () => {
     expect(game.parseGameState()).to.equal("$2bo$b2o!");
   });
   
-  it("should initialize with a board with extra room", () => {
-    let game = new Game(3, 3, "bo$2bo$3o!")
-    expect(game.board.length).to.equal(5);
-    expect(game.board[0].length).to.equal(5);
-  });
 });
 
 describe("after a tick of the game ", () => {

@@ -42,17 +42,10 @@ export class Game {
     }
   }
 
-  initializeBoard2() {
+  initializeBoard() {
     var board = new Array(this.height)
     for(let i = 0; i < this.height; i++) {
       board[i] = new Array(this.width).fill(false);
-    }
-    return board;
-  }
-  initializeBoard() {
-    var board = new Array(this.height+2)
-    for(let i = 0; i < this.height+2; i++) {
-      board[i] = new Array(this.width+2).fill(false);
     }
     return board;
   }

@@ -35,4 +35,5 @@ describe('The app', () => {
         expect(main.game.state).to.equal("$b2o$b2o!");
         unlinkSync("playtest_out.rle");
     })
+    
 })
